@@ -17,9 +17,9 @@
   const stepSearch = document.getElementById("step-search");
 
   const STATUS = {
-    green: { label: "Успешно применяется на месторождениях ПАО «Газпром нефть»", short: "Успешно применяется", cls: "green" },
-    yellow: { label: "Не применяется на месторождениях ПАО «Газпром нефть», рекомендована к внедрению", short: "Рекомендована к внедрению", cls: "yellow" },
-    red: { label: "Не подлежит применению на месторождениях ПАО «Газпром нефть»", short: "Не подлежит применению", cls: "red" }
+    green: { label: "Успешно применяется на месторождениях Компании", short: "Успешно применяется", cls: "green" },
+    yellow: { label: "Не применяется на месторождениях Компании, рекомендована к внедрению", short: "Рекомендована к внедрению", cls: "yellow" },
+    red: { label: "Не подлежит применению на месторождениях Компании", short: "Не подлежит применению", cls: "red" }
   };
 
   const KPI_OPTIONS = ["КИН", "CAPEX", "OPEX", "REVEX", "объём добычи", "NPV"];
@@ -230,7 +230,7 @@
         <tr data-tech-name="${escapeHtml(tech.name)}">
           <td data-label="Технология"><div class="tech-name">${escapeHtml(tech.name)}</div></td>
           <td class="desc" data-label="Описание">${escapeHtml(tech.desc)}</td>
-          <td class="status-cell" data-label="Применение на месторождениях ПАО «Газпром нефть»">
+          <td class="status-cell" data-label="Применение на месторождениях Компании">
             <span class="status">
               <span class="dot ${status.cls}"></span>
               <span class="status-full">${escapeHtml(status.label)}</span>
