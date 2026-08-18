@@ -1,0 +1,10 @@
+.DS_Store
+*.pdf
+*.pptx
+*.docx
+*.xlsx
+*.zip
+Archive/
+Данные/
+Концепция/
+Старт работ/

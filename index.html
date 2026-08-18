@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Технологический атлас UPSTREAM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3c6.2 7.4 10 12.1 10 17.2A10 10 0 1 1 6 20.2C6 15.1 9.8 10.4 16 3Z" fill="white"/>
+            <path d="M16 13.2c3.3 4 5.3 6.4 5.3 9.1a5.3 5.3 0 1 1-10.6 0c0-2.7 2-5.1 5.3-9.1Z" fill="#004374"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Технологический атлас UPSTREAM</h1>
+          <p>ПАО «Газпром нефть» · открытые источники по группе компаний</p>
+        </div>
+      </div>
+      <div class="search-wrap" id="search-wrap">
+        <label class="search-field">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M16 16.5 20.5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input id="tech-search" type="search" placeholder="Поиск технологий: МУН, ХМУН, полимер, ЭЦН…" autocomplete="off">
+        </label>
+        <div id="search-results" class="search-results" hidden></div>
+      </div>
+    </header>
+
+    <section id="view-home" class="view active">
+      <div class="hero">
+        <h2>Флоу цикла UPSTREAM</h2>
+        <p class="lead">
+          Карта технологий, применяемых на месторождениях ПАО «Газпром нефть» и предприятиями группы
+          на каждом шаге upstream-цикла: от поиска залежи до энергоснабжения промысла. Нажмите на шаг, чтобы открыть детализацию.
+        </p>
+        <div class="stats-row">
+          <div class="stat"><b id="total-techs">0</b><span>технологий в каталоге</span></div>
+          <div class="stat"><b id="total-steps">6</b><span>шагов цикла</span></div>
+          <div class="stat"><b>6</b><span>ключевых показателей</span></div>
+        </div>
+      </div>
+
+      <div class="flow-wrap">
+        <div class="flow-title">Шаги процесса</div>
+        <div id="flow" class="flow"></div>
+        <p class="hint">На каждом кубике — суммарное число найденных технологий. Клик открывает таблицу детализации.</p>
+      </div>
+    </section>
+
+    <section id="view-detail" class="view">
+      <div class="detail-head">
+        <button id="back-btn" class="back" type="button" aria-label="Назад">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M15 5 8 12l7 7" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div>
+          <h2 id="detail-title">Детализация технологий</h2>
+          <p id="detail-lead"></p>
+        </div>
+      </div>
+
+      <div class="legend" aria-label="Легенда светофора">
+        <span class="legend-item"><span class="dot green"></span>зелёный — успешно применяется на месторождениях ПАО «Газпром нефть»</span>
+        <span class="legend-item"><span class="dot yellow"></span>жёлтый — не применяется на месторождениях ПАО «Газпром нефть», но рекомендована к внедрению</span>
+        <span class="legend-item"><span class="dot red"></span>красный — не подлежит применению на месторождениях ПАО «Газпром нефть»</span>
+      </div>
+
+      <div class="filters" id="filters">
+        <div class="filters-row">
+          <div class="filter-group">
+            <div class="filter-label">Применение на месторождениях ПАО «Газпром нефть»</div>
+            <div class="chips" id="status-chips"></div>
+          </div>
+          <div class="filter-group">
+            <div class="filter-label">Влияние на ключевые показатели</div>
+            <div class="chips" id="kpi-chips"></div>
+          </div>
+        </div>
+        <div class="filters-row">
+          <div class="filter-group filter-search">
+            <div class="filter-label">Поиск на этом шаге</div>
+            <label class="search-field search-field-inline">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M16 16.5 20.5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <input id="step-search" type="search" placeholder="Название или описание технологии" autocomplete="off">
+            </label>
+          </div>
+        </div>
+        <div class="filters-meta">
+          <span id="filter-count"></span>
+          <button type="button" class="reset-btn" id="reset-filters">Сбросить фильтры</button>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Технология</th>
+                <th>Описание</th>
+                <th>Применение на месторождениях ПАО «Газпром нефть»</th>
+                <th>Влияние на ключевые показатели</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Сводка составлена по открытым источникам: публикации ПАО «Газпром нефть», «Газпромнефть-Ямал»,
+      «Газпромнефть-Хантос», «Газпромнефть-Оренбург», «Мессояханефтегаз», «Газпромнефть-Сахалин»,
+      SPE / JPT и отраслевые обзоры. Светофор применимости отражает фактический статус в группе компаний
+      по открытым данным (промышленное применение, опытно-промышленные работы / рекомендация к тиражированию
+      либо несоответствие портфелю активов) и не заменяет внутренний технологический аудит.
+    </footer>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
