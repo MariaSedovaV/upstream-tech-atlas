@@ -228,15 +228,16 @@
       }).join("");
       return `
         <tr data-tech-name="${escapeHtml(tech.name)}">
-          <td><div class="tech-name">${escapeHtml(tech.name)}</div></td>
-          <td class="desc">${escapeHtml(tech.desc)}</td>
-          <td class="status-cell">
+          <td data-label="Технология"><div class="tech-name">${escapeHtml(tech.name)}</div></td>
+          <td class="desc" data-label="Описание">${escapeHtml(tech.desc)}</td>
+          <td class="status-cell" data-label="Применение на месторождениях ПАО «Газпром нефть»">
             <span class="status">
               <span class="dot ${status.cls}"></span>
-              ${escapeHtml(status.label)}
+              <span class="status-full">${escapeHtml(status.label)}</span>
+              <span class="status-short">${escapeHtml(status.short)}</span>
             </span>
           </td>
-          <td><div class="kpis">${kpis}</div></td>
+          <td data-label="Влияние на ключевые показатели"><div class="kpis">${kpis}</div></td>
         </tr>
       `;
     }).join("");

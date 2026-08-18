@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Технологический атлас UPSTREAM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,7 @@
             <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2" fill="none"/>
             <path d="M16 16.5 20.5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <input id="tech-search" type="search" placeholder="Поиск технологий: МУН, ХМУН, полимер, ЭЦН…" autocomplete="off">
+            <input id="tech-search" type="search" placeholder="Поиск: МУН, полимер, ЭЦН…" enterkeyhint="search" autocomplete="off">
         </label>
         <div id="search-results" class="search-results" hidden></div>
       </div>
@@ -53,7 +53,7 @@
       <div class="flow-wrap">
         <div class="flow-title">Шаги процесса</div>
         <div id="flow" class="flow"></div>
-        <p class="hint">На каждом кубике — суммарное число найденных технологий. Клик открывает таблицу детализации.</p>
+        <p class="hint">На каждом шаге — число найденных технологий. Нажмите карточку, чтобы открыть детализацию.</p>
       </div>
     </section>
 
